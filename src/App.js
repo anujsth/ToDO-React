@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Input from "./component/Inputs/Input";
+import Tasks from "./component/TaskList/Tasks";
 
 function App() {
+  const InputSubmitHandler = (arg) => {
+    const enteredTask = arg;
+    console.log(enteredTask);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Input onInputSubmit={InputSubmitHandler} />
+      <Tasks />
     </div>
   );
 }

@@ -10,6 +10,7 @@ function Input(props) {
   const Submitted = (event) => {
     event.preventDefault();
     props.onInputSubmit(enteredTask);
+    setEnteredTask("");
   };
 
   return (
@@ -22,6 +23,7 @@ function Input(props) {
           className="new-task-input"
           placeholder="What do you have planned?"
           onChange={submittedTask}
+          value={enteredTask}
         />
         <button type="submit" className="submitButton">
           Add Task

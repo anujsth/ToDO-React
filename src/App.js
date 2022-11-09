@@ -1,18 +1,26 @@
 import logo from "./logo.svg";
+import React, { useState } from "react";
 import "./App.css";
 import Input from "./component/Inputs/Input";
 import Tasks from "./component/TaskList/Tasks";
 
-function App() {
+// const Initial = ["read"];
+function App(props) {
+  const [task, setTask] = useState([]);
   const InputSubmitHandler = (arg) => {
-    const enteredTask = arg;
-    console.log(enteredTask);
+    setTask((prevState) => {
+      return [arg, ...prevState];
+    });
+  };
+
+  const TaskDelete = (arg) => {
+    return setTask((task.arg = ""));
   };
 
   return (
     <div>
       <Input onInputSubmit={InputSubmitHandler} />
-      <Tasks />
+      <Tasks passData={task} onTaskDelete={TaskDelete} />
     </div>
   );
 }

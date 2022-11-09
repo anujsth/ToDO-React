@@ -5,7 +5,7 @@ import Input from "./component/Inputs/Input";
 import Tasks from "./component/TaskList/Tasks";
 
 // const Initial = ["read"];
-function App(props) {
+function App() {
   const [task, setTask] = useState([]);
   const InputSubmitHandler = (arg) => {
     setTask((prevState) => {
@@ -13,14 +13,18 @@ function App(props) {
     });
   };
 
-  const TaskDelete = (arg) => {
-    return setTask((task.arg = ""));
+  const taskDeleteHandler = (id) => {
+    setTask((prevState) => {
+      return prevState.filter((arrElement, index) => {
+        return index !== id;
+      });
+    });
   };
 
   return (
     <div>
       <Input onInputSubmit={InputSubmitHandler} />
-      <Tasks passData={task} onTaskDelete={TaskDelete} />
+      <Tasks passData={task} onDelete={taskDeleteHandler} />
     </div>
   );
 }

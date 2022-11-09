@@ -8,7 +8,7 @@ function Tasks(props) {
     <div class="task-list">
       <h2>Tasks</h2>
       <div className="task">
-        {props.passData.map((arg) => (
+        {props.passData.map((arg, index) => (
           // <TaskLister task={arg} />
           <div className="task-lister">
             <h1>{arg}</h1>
@@ -16,7 +16,7 @@ function Tasks(props) {
               <button
                 className="buttonDelete"
                 onClick={() => {
-                  props.onTaskDelete(arg);
+                  props.onDelete(index);
                 }}
               >
                 Delete

@@ -7,6 +7,7 @@ import Tasks from "./component/TaskList/Tasks";
 // const Initial = ["read"];
 function App() {
   const [task, setTask] = useState([]);
+  const [toggle, setToggle] = useState(false);
   const InputSubmitHandler = (arg) => {
     setTask((prevState) => {
       return [arg, ...prevState];
@@ -21,10 +22,21 @@ function App() {
     });
   };
 
+  const editHandler = (id) => {
+    task[id] = "udpated";
+    setToggle(true);
+    return setTask([...task]);
+  };
+
   return (
-    <div>
+    <div className="app-style">
       <Input onInputSubmit={InputSubmitHandler} />
-      <Tasks passData={task} onDelete={taskDeleteHandler} />
+      <Tasks
+        passData={task}
+        onDelete={taskDeleteHandler}
+        onEditHandler={editHandler}
+        onToggleHandler={toggle}
+      />
     </div>
   );
 }

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "./Task.css";
 import App from "../../App";
-import TaskLister from "./TaskLister";
 
 function Tasks(props) {
+  const [edit, setEdit] = useState(props.passData);
+
   return (
     <div class="task-list">
       <h2>Tasks</h2>
@@ -11,7 +12,7 @@ function Tasks(props) {
         {props.passData.map((arg, index) => (
           // <TaskLister task={arg} />
           <div className="task-lister">
-            <h1>{arg}</h1>
+            <input className="input-Task" value={arg} />
             <div>
               <button
                 className="buttonDelete"
@@ -21,7 +22,14 @@ function Tasks(props) {
               >
                 Delete
               </button>
-              <button className="buttonEdit">Edit</button>
+              <button
+                className="buttonEdit"
+                onClick={() => {
+                  props.onEditHandler(index);
+                }}
+              >
+                Edit
+              </button>
             </div>
           </div>
         ))}

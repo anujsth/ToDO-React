@@ -3,7 +3,26 @@ import "./Task.css";
 import App from "../../App";
 
 function Tasks(props) {
-  const [edit, setEdit] = useState(props.passData);
+  const [val, setVal] = useState("");
+  const [editing, setEditing] = useState(false);
+  // const editHandler = (event) => {
+  //   setEdit(event.target.value);
+  //   console.log(edit);
+  // };
+
+  const handleEditing = (event) => {
+    console.log("editing..");
+    setEditing(true);
+  };
+
+  // const enteredInput = () => {
+  //   props.onEditedInput(val);
+  //   setEditing(false);
+  // };
+
+  const submitInput = (event) => {
+    setVal(event.target.value);
+  };
 
   return (
     <div class="task-list">
@@ -12,7 +31,21 @@ function Tasks(props) {
         {props.passData.map((arg, index) => (
           // <TaskLister task={arg} />
           <div className="task-lister">
-            <input className="input-Task" value={arg} />
+            {editing ? (
+              <input
+                placeholder={arg}
+                type="text"
+                className="input-style"
+                onBlur={() => {
+                  props.onEditHandler(index, val);
+                  setEditing(false);
+                }}
+                onChange={submitInput}
+              />
+            ) : (
+              <h1>{arg}</h1>
+            )}
+
             <div>
               <button
                 className="buttonDelete"
@@ -24,9 +57,10 @@ function Tasks(props) {
               </button>
               <button
                 className="buttonEdit"
-                onClick={() => {
-                  props.onEditHandler(index);
-                }}
+                onClick={handleEditing}
+                // onClick={() => {
+                //   props.onEditHandler(index, edit);
+                // }}
               >
                 Edit
               </button>

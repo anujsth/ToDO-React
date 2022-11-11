@@ -7,7 +7,7 @@ import Tasks from "./component/TaskList/Tasks";
 // const Initial = ["read"];
 function App() {
   const [task, setTask] = useState([]);
-  const [toggle, setToggle] = useState(false);
+  const [editedInput, setEditedInput] = useState("");
   const InputSubmitHandler = (arg) => {
     setTask((prevState) => {
       return [arg, ...prevState];
@@ -22,10 +22,13 @@ function App() {
     });
   };
 
-  const editHandler = (id) => {
-    task[id] = "udpated";
-    setToggle(true);
+  const editHandler = (id, edited) => {
+    task[id] = edited;
     return setTask([...task]);
+  };
+
+  const editedInputHandler = (arg) => {
+    setEditedInput(arg);
   };
 
   return (
@@ -35,7 +38,7 @@ function App() {
         passData={task}
         onDelete={taskDeleteHandler}
         onEditHandler={editHandler}
-        onToggleHandler={toggle}
+        onEditedInput={editedInputHandler}
       />
     </div>
   );

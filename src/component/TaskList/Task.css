@@ -69,6 +69,7 @@
 .task-lister {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 .buttonDelete {
@@ -90,4 +91,11 @@
 .input-Task {
   font-size: 35px;
   color: var(--grey);
+}
+
+.input-style {
+  background-color: aliceblue;
+  border-radius: 20px;
+  height: 40px;
+  font-size: 20px;
 }
